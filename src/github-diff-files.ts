@@ -14,6 +14,10 @@ const requestDiffFiles = async (): Promise<string[]> => {
         number
     })
 
+    console.log('::debug:: === Diff files ===')
+    console.log('::debug::', response.data)
+    console.log('::debug:: === Diff files ===')
+
     const json = JSON.parse(response.data as unknown as string)
     return json.map((diffEntry: any) => diffEntry.filename);
 }
