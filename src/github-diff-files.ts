@@ -11,10 +11,7 @@ const requestDiffFiles = async (): Promise<string[]> => {
     const response = await octokit.request("GET /repos/{owner}/{repo}/pulls/{number}/files", {
         owner,
         repo,
-        number,
-        headers: {
-            'X-GitHub-Api-Version': '2022-11-28'
-        }
+        number
     })
 
     const json = JSON.parse(response.data as unknown as string)
