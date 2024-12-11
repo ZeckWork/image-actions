@@ -28,7 +28,7 @@ const processImages = async (): Promise<ProcessedImagesResult> => {
   const config = await getConfig()
   let globPaths;
 
-  if (ONLY_IMAGES_ON_PR) {
+  // if (ONLY_IMAGES_ON_PR) {
     const diffFiles = await requestDiffFiles()
 
     globPaths = `${REPO_DIRECTORY}/**/{${diffFiles.join(
@@ -38,11 +38,11 @@ const processImages = async (): Promise<ProcessedImagesResult> => {
     console.log('::debug:: === Diff files ===')
     console.log('::debug::', globPaths)
     console.log('::debug:: === Diff files ===')
-  } else {
-    globPaths = `${REPO_DIRECTORY}/**/*.{${FILE_EXTENSIONS_TO_PROCESS.join(
-      ','
-    )}}`
-  }
+  // } else {
+  //   globPaths = `${REPO_DIRECTORY}/**/*.{${FILE_EXTENSIONS_TO_PROCESS.join(
+  //     ','
+  //   )}}`
+  // }
 
   const imagePaths = await glob(globPaths, {
     ignore: config.ignorePaths.map((p: string) =>
