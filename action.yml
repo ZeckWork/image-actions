@@ -40,7 +40,7 @@ inputs:
   onlyImagesInPR:
     description: "Compress only imagens on your Pull Request"
     required: false
-    default: "false"
+    default: "true"
 
 outputs:
   markdown:
