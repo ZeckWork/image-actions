@@ -9,10 +9,12 @@ const glob = util.promisify(require('glob'))
 import {
   REPO_DIRECTORY,
   EXTENSION_TO_SHARP_FORMAT_MAPPING,
-  FILE_EXTENSIONS_TO_PROCESS
+  FILE_EXTENSIONS_TO_PROCESS,
+  ONLY_IMAGES_ON_PR,
 } from './constants'
 
 import getConfig from './config'
+import requestDiffFiles from './github-diff-files'
 
 const processImages = async (): Promise<ProcessedImagesResult> => {
   console.log(
@@ -24,9 +26,19 @@ const processImages = async (): Promise<ProcessedImagesResult> => {
   console.log('::debug:: === Sharp library info ===')
 
   const config = await getConfig()
-  const globPaths = `${REPO_DIRECTORY}/**/*.{${FILE_EXTENSIONS_TO_PROCESS.join(
-    ','
-  )}}`
+  let globPaths;
+
+  if (ONLY_IMAGES_ON_PR) {
+    const diffFiles = await requestDiffFiles()
+
+    globPaths = `${REPO_DIRECTORY}/**/{${diffFiles.join(
+      ','
+    )}}`
+  } else {
+    globPaths = `${REPO_DIRECTORY}/**/*.{${FILE_EXTENSIONS_TO_PROCESS.join(
+      ','
+    )}}`
+  }
 
   const imagePaths = await glob(globPaths, {
     ignore: config.ignorePaths.map((p: string) =>

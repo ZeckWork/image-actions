@@ -21,6 +21,7 @@ const IGNORE_PATHS = process.env['INPUT_IGNOREPATHS']
   : ['node_modules/**']
 const COMPRESS_ONLY = process.env['INPUT_COMPRESSONLY'] === 'true'
 const JPEG_PROGRESSIVE = process.env['INPUT_JPEGPROGRESSIVE'] === 'true'
+const ONLY_IMAGES_ON_PR = process.env['INPUT_ONLY_IMAGES_ON_PR'] === 'true'
 
 const COMMITTER = {
   name: 'Calibre',
@@ -68,5 +69,6 @@ export {
   PNG_QUALITY,
   WEBP_QUALITY,
   IGNORE_PATHS,
-  COMPRESS_ONLY
+  COMPRESS_ONLY,
+  ONLY_IMAGES_ON_PR
 }

@@ -37,6 +37,11 @@ inputs:
     required: false
     default: "false"
 
+  onlyImagesInPR:
+    description: "Compress only imagens on your Pull Request"
+    required: false
+    default: "false"
+
 outputs:
   markdown:
     description: "Output param used to store the Markdown summary for subsequent actions to use"
