@@ -21,7 +21,7 @@ const IGNORE_PATHS = process.env['INPUT_IGNOREPATHS']
   : ['node_modules/**']
 const COMPRESS_ONLY = process.env['INPUT_COMPRESSONLY'] === 'true'
 const JPEG_PROGRESSIVE = process.env['INPUT_JPEGPROGRESSIVE'] === 'true'
-const ONLY_IMAGES_ON_PR = process.env['INPUT_ONLY_IMAGES_ON_PR'] === 'true'
+const ONLY_IMAGES_ON_PR = process.env['INPUT_ONLYIMAGESINPR'] === 'true'
 
 const COMMITTER = {
   name: 'Calibre',
