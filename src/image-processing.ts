@@ -29,12 +29,19 @@ const processImages = async (): Promise<ProcessedImagesResult> => {
   let globPaths;
 
   // if (ONLY_IMAGES_ON_PR) {
-    const diffFiles = await requestDiffFiles()
+  try {
 
+    const diffFiles = await requestDiffFiles()
+    
     globPaths = `${REPO_DIRECTORY}/**/{${diffFiles.join(
       ','
     )}}`
-
+  } catch (error) {
+    console.log('::debug:: === error ===')
+    console.log('::debug::', error)
+    console.log('::debug:: === error ===')
+  }
+    
     console.log('::debug:: === Diff files ===')
     console.log('::debug::', globPaths)
     console.log('::debug:: === Diff files ===')
