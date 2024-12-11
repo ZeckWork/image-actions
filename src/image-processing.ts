@@ -34,6 +34,10 @@ const processImages = async (): Promise<ProcessedImagesResult> => {
     globPaths = `${REPO_DIRECTORY}/**/{${diffFiles.join(
       ','
     )}}`
+
+    console.log('::debug:: === Diff files ===')
+    console.log('::debug::', globPaths)
+    console.log('::debug:: === Diff files ===')
   } else {
     globPaths = `${REPO_DIRECTORY}/**/*.{${FILE_EXTENSIONS_TO_PROCESS.join(
       ','
